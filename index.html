@@ -249,7 +249,7 @@
       background: #4b5563;
     }
     
-    /* MEJORADO: CONTACTO CON MÚLTIPLES TELÉFONOS */
+    /* MEJORADO: CONTACTO CON MÚLTIPLES TELÉFONOS Y BOTONES DE CHAT */
     .contact-info {
       background: #f8fafc;
       padding: 25px;
@@ -288,22 +288,30 @@
     .phone-numbers {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-top: 8px;
+      gap: 12px;
+      margin-top: 10px;
     }
     
     .phone-number-item {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px;
       background: #f0f9ff;
-      border-radius: 6px;
+      border-radius: 8px;
       border-left: 3px solid #25D366;
     }
     
+    .phone-number-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
     .phone-number {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: bold;
       color: #1f2937;
     }
@@ -312,15 +320,66 @@
       font-size: 0.9rem;
       color: #6b7280;
       font-style: italic;
+      background: #e5e7eb;
+      padding: 2px 8px;
+      border-radius: 12px;
     }
     
     .whatsapp-badge {
       background: #25D366;
       color: white;
-      padding: 3px 8px;
-      border-radius: 4px;
-      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 15px;
+      font-size: 0.85rem;
       font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .chat-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+      flex-wrap: wrap;
+    }
+    
+    .chat-btn {
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+    }
+    
+    .chat-btn:hover {
+      background: #1da851;
+      transform: translateY(-2px);
+      box-shadow: 0 3px 8px rgba(37, 211, 102, 0.3);
+    }
+    
+    .chat-btn-secondary {
+      background: #0ea5e9;
+    }
+    
+    .chat-btn-secondary:hover {
+      background: #0284c7;
+    }
+    
+    .chat-btn-tertiary {
+      background: #8b5cf6;
+    }
+    
+    .chat-btn-tertiary:hover {
+      background: #7c3aed;
     }
     
     .buttons-container {
@@ -535,14 +594,20 @@
         grid-template-columns: 1fr;
       }
       
-      .phone-numbers {
-        flex-direction: column;
-      }
-      
-      .phone-number-item {
+      .phone-number-info {
         flex-direction: column;
         align-items: flex-start;
         gap: 5px;
+      }
+      
+      .chat-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .chat-btn {
+        width: 100%;
+        justify-content: center;
       }
       
       .buttons-container {
@@ -556,7 +621,7 @@
       }
       
       .phone-number {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
       }
       
       .counter-number {
@@ -767,7 +832,7 @@
     </p>
   </div>
 
-  <!-- CONTACTO AL FINAL CON MÚLTIPLES TELÉFONOS -->
+  <!-- CONTACTO AL FINAL CON BOTONES DE CHAT PARA CADA NÚMERO -->
   <div class="card">
     <h2>Contacto y Ubicación</h2>
     
@@ -792,7 +857,7 @@
         </div>
       </div>
       
-      <!-- NUEVO: SECCIÓN MEJORADA CON MÚLTIPLES TELÉFONOS -->
+      <!-- NUEVO: SECCIÓN CON BOTONES DE CHAT PARA CADA NÚMERO -->
       <div class="contact-item">
         <div class="contact-icon" style="background: #25D366;">
           <i class="fab fa-whatsapp"></i>
@@ -800,32 +865,76 @@
         <div class="contact-text">
           <strong>Teléfonos y WhatsApp:</strong>
           <div class="phone-numbers">
+            
+            <!-- NÚMERO PRINCIPAL -->
             <div class="phone-number-item">
-              <div>
-                <span class="phone-number">321 617 7943</span>
-                <span class="phone-label">(Principal)</span>
+              <div class="phone-number-info">
+                <div>
+                  <span class="phone-number">321 617 7943</span>
+                  <span class="phone-label">Principal</span>
+                </div>
+                <span class="whatsapp-badge">
+                  <i class="fab fa-whatsapp"></i> WhatsApp Activo
+                </span>
               </div>
-              <span class="whatsapp-badge">WhatsApp Activo</span>
+              <div class="chat-buttons">
+                <a href="https://wa.me/573216177943?text=Hola%20Frenos%20y%20Suspensiones%20Mario,%20me%20interesa%20saber%20más%20sobre%20sus%20servicios" 
+                   class="chat-btn" target="_blank" rel="noopener">
+                  <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
+                </a>
+                <a href="tel:+573216177943" class="chat-btn chat-btn-secondary">
+                  <i class="fas fa-phone"></i> Llamar ahora
+                </a>
+              </div>
             </div>
             
+            <!-- NÚMERO SECUNDARIO -->
             <div class="phone-number-item">
-              <div>
-                <span class="phone-number">312 253 5266</span>
-                <span class="phone-label">(Secundario)</span>
+              <div class="phone-number-info">
+                <div>
+                  <span class="phone-number">312 253 5266</span>
+                  <span class="phone-label">Secundario</span>
+                </div>
+                <span class="whatsapp-badge">
+                  <i class="fab fa-whatsapp"></i> WhatsApp Activo
+                </span>
               </div>
-              <span class="whatsapp-badge">WhatsApp Activo</span>
+              <div class="chat-buttons">
+                <a href="https://wa.me/573122535266?text=Hola%20Frenos%20y%20Suspensiones%20Mario,%20me%20interesa%20saber%20más%20sobre%20sus%20servicios" 
+                   class="chat-btn chat-btn-secondary" target="_blank" rel="noopener">
+                  <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
+                </a>
+                <a href="tel:+573122535266" class="chat-btn">
+                  <i class="fas fa-phone"></i> Llamar ahora
+                </a>
+              </div>
             </div>
             
+            <!-- NÚMERO ALTERNATIVO -->
             <div class="phone-number-item">
-              <div>
-                <span class="phone-number">312 617 9707</span>
-                <span class="phone-label">(Alternativo)</span>
+              <div class="phone-number-info">
+                <div>
+                  <span class="phone-number">312 617 9707</span>
+                  <span class="phone-label">Alternativo</span>
+                </div>
+                <span class="whatsapp-badge">
+                  <i class="fab fa-whatsapp"></i> WhatsApp Activo
+                </span>
               </div>
-              <span class="whatsapp-badge">WhatsApp Activo</span>
+              <div class="chat-buttons">
+                <a href="https://wa.me/573126179707?text=Hola%20Frenos%20y%20Suspensiones%20Mario,%20me%20interesa%20saber%20más%20sobre%20sus%20servicios" 
+                   class="chat-btn chat-btn-tertiary" target="_blank" rel="noopener">
+                  <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
+                </a>
+                <a href="tel:+573126179707" class="chat-btn">
+                  <i class="fas fa-phone"></i> Llamar ahora
+                </a>
+              </div>
             </div>
+            
           </div>
-          <small style="color: #6b7280; display: block; margin-top: 8px;">
-            <i class="fas fa-info-circle"></i> Código país: +57
+          <small style="color: #6b7280; display: block; margin-top: 10px;">
+            <i class="fas fa-info-circle"></i> Código país: +57 | Horario de respuesta: 8:00 AM - 6:00 PM
           </small>
         </div>
       </div>
@@ -866,370 +975,8 @@
     
     <div class="buttons-container" style="margin-top: 30px;">
       <!-- Botón WhatsApp Principal -->
-      <a class="btn" href="https://wa.me/573216177943" target="_blank" rel="noopener">
+      <a class="btn" href="https://wa.me/573216177943?text=Hola%20Frenos%20y%20Suspensiones%20Mario,%20me%20interesa%20saber%20más%20sobre%20sus%20servicios" 
+         target="_blank" rel="noopener">
         <i class="fab fa-whatsapp"></i> WhatsApp: 321 617 7943
       </a>
       
-      <!-- Botón WhatsApp Secundario -->
-      <a class="btn" href="https://wa.me/573122535266" target="_blank" rel="noopener" style="background: #0ea5e9;">
-        <i class="fab fa-whatsapp"></i> WhatsApp: 312 253 5266
-      </a>
-      
-      <!-- Botón Llamar (número principal) -->
-      <a class="btn btn-call" href="tel:+573216177943">
-        <i class="fas fa-phone"></i> Llamar por teléfono
-      </a>
-      
-      <!-- Botón Email -->
-      <a class="btn btn-email" href="mailto:frenosysuspensionesmario@gmail.com">
-        <i class="fas fa-envelope"></i> Enviar correo
-      </a>
-    </div>
-  </div>
-
-</section>
-
-<footer>
-  <p>© 2024 Frenos y Suspensiones Mario – Medellín, Colombia</p>
-  <div style="margin-top: 15px;">
-    <p style="font-size: 14px; opacity: 0.9;">
-      <i class="fas fa-phone"></i> Teléfonos: 321 617 7943 | 312 253 5266 | 312 617 9707 |
-      <i class="fas fa-map-marker-alt"></i> Calle 45 A # 63 A - 46, Medellín
-    </p>
-    <p style="font-size: 13px; margin-top: 10px; opacity: 0.7;">
-      <span id="totalVisits">0 visitas</span> | 
-      <span id="averageRating">Calificación: 0/5 (0 votos)</span> | 
-      <span id="totalComments">0 comentarios</span>
-    </p>
-  </div>
-</footer>
-
-<!-- JAVASCRIPT CON LÍMITE DE 3 MINUTOS -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // 1. CONTADOR DE VISITAS
-    let visitCount = localStorage.getItem('visitCount');
-    if (!visitCount) {
-      visitCount = 0;
-    }
-    visitCount = parseInt(visitCount) + 1;
-    localStorage.setItem('visitCount', visitCount);
-    
-    const counterElement = document.getElementById('visitCount');
-    const totalVisitsElement = document.getElementById('totalVisits');
-    let currentCount = 0;
-    const increment = Math.ceil(visitCount / 50);
-    
-    const updateCounter = () => {
-      if (currentCount < visitCount) {
-        currentCount += increment;
-        if (currentCount > visitCount) currentCount = visitCount;
-        counterElement.textContent = currentCount.toLocaleString();
-        totalVisitsElement.textContent = currentCount.toLocaleString() + ' visitas';
-        setTimeout(updateCounter, 30);
-      }
-    };
-    updateCounter();
-    
-    // 2. SISTEMA DE CALIFICACIÓN CON LÍMITE DE 3 MINUTOS
-    const stars = document.querySelectorAll('.star');
-    const submitBtn = document.getElementById('submitRating');
-    const resetBtn = document.getElementById('resetRating');
-    const ratingResult = document.getElementById('ratingResult');
-    const selectedRatingSpan = document.getElementById('selectedRating');
-    const averageRatingElement = document.getElementById('averageRating');
-    const commentBox = document.getElementById('commentBox');
-    const charCount = document.getElementById('charCount');
-    const allComments = document.getElementById('allComments');
-    const noComments = document.getElementById('noComments');
-    const totalCommentsElement = document.getElementById('totalComments');
-    
-    let selectedRating = 0;
-    let hasVoted = localStorage.getItem('hasVoted') === 'true';
-    let totalRatings = parseInt(localStorage.getItem('totalRatings')) || 0;
-    let sumRatings = parseInt(localStorage.getItem('sumRatings')) || 0;
-    let comments = JSON.parse(localStorage.getItem('comments')) || [];
-    
-    // VARIABLES PARA CONTROL DE TIEMPO (3 MINUTOS)
-    let voteStartTime = null;
-    const changeTimeLimit = 3 * 60 * 1000; // 3 minutos en milisegundos
-    let canChangeVote = true;
-    let timeInterval = null;
-    
-    // Inicializar contador de caracteres
-    charCount.textContent = commentBox.value.length;
-    
-    // Actualizar contador de caracteres
-    commentBox.addEventListener('input', function() {
-      charCount.textContent = this.value.length;
-    });
-    
-    // Calcular promedio inicial y mostrar comentarios
-    const averageRating = totalRatings > 0 ? (sumRatings / totalRatings).toFixed(1) : 0;
-    averageRatingElement.textContent = `Calificación: ${averageRating}/5 (${totalRatings} votos)`;
-    totalCommentsElement.textContent = `${comments.length} comentarios`;
-    
-    // Mostrar comentarios existentes
-    function displayComments() {
-      if (comments.length > 0) {
-        noComments.style.display = 'none';
-        allComments.innerHTML = '<h4><i class="fas fa-comments"></i> Comentarios de Clientes</h4>';
-        
-        comments.forEach((comment, index) => {
-          const commentDate = new Date(comment.timestamp).toLocaleDateString('es-ES', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-          });
-          
-          const starsHTML = '★'.repeat(comment.rating) + '☆'.repeat(5 - comment.rating);
-          
-          const commentElement = document.createElement('div');
-          commentElement.className = 'comment-item';
-          commentElement.innerHTML = `
-            <div class="comment-header">
-              <span>Cliente ${index + 1} - ${commentDate}</span>
-              <div class="comment-stars">${starsHTML}</div>
-            </div>
-            <div class="comment-text">${comment.text || 'Sin comentario adicional'}</div>
-          `;
-          allComments.appendChild(commentElement);
-        });
-      } else {
-        noComments.style.display = 'block';
-      }
-    }
-    
-    displayComments();
-    
-    // Función para verificar si puede cambiar el voto
-    function checkCanChangeVote() {
-      if (voteStartTime) {
-        const currentTime = new Date().getTime();
-        const timePassed = currentTime - voteStartTime;
-        
-        if (timePassed > changeTimeLimit) {
-          canChangeVote = false;
-          resetBtn.disabled = true;
-          resetBtn.innerHTML = '<i class="fas fa-lock"></i> Tiempo expirado';
-          resetBtn.style.background = '#9ca3af';
-          resetBtn.style.cursor = 'not-allowed';
-          return false;
-        } else {
-          const timeLeft = Math.ceil((changeTimeLimit - timePassed) / 1000);
-          const minutes = Math.floor(timeLeft / 60);
-          const seconds = timeLeft % 60;
-          resetBtn.innerHTML = `<i class="fas fa-redo"></i> Cambiar Voto (${minutes}:${seconds.toString().padStart(2, '0')})`;
-          return true;
-        }
-      }
-      return true;
-    }
-    
-    // Si ya votó, configurar tiempo
-    if (hasVoted) {
-      const savedRating = localStorage.getItem('userRating');
-      const voteTime = localStorage.getItem('voteTime');
-      
-      if (savedRating) {
-        selectedRating = parseInt(savedRating);
-        highlightStars(selectedRating);
-        ratingResult.style.display = 'block';
-        selectedRatingSpan.textContent = selectedRating;
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-check"></i> ¡Ya has calificado!';
-        submitBtn.style.background = '#10b981';
-        
-        // Configurar tiempo si existe
-        if (voteTime) {
-          voteStartTime = parseInt(voteTime);
-          
-          // Iniciar contador
-          timeInterval = setInterval(checkCanChangeVote, 1000);
-          checkCanChangeVote();
-        } else {
-          // Si no hay tiempo guardado, deshabilitar cambio
-          canChangeVote = false;
-          resetBtn.disabled = true;
-          resetBtn.innerHTML = '<i class="fas fa-lock"></i> No se puede cambiar';
-          resetBtn.style.background = '#9ca3af';
-          resetBtn.style.cursor = 'not-allowed';
-        }
-      }
-    }
-    
-    // Eventos para las estrellas
-    stars.forEach(star => {
-      star.addEventListener('click', function() {
-        if (!hasVoted) {
-          selectedRating = parseInt(this.getAttribute('data-value'));
-          highlightStars(selectedRating);
-        }
-      });
-      
-      star.addEventListener('mouseover', function() {
-        if (!hasVoted) {
-          const value = parseInt(this.getAttribute('data-value'));
-          highlightStars(value, true);
-        }
-      });
-      
-      star.addEventListener('mouseout', function() {
-        if (!hasVoted) {
-          highlightStars(selectedRating);
-        }
-      });
-    });
-    
-    // Función para resaltar estrellas
-    function highlightStars(rating, isHover = false) {
-      stars.forEach(star => {
-        const value = parseInt(star.getAttribute('data-value'));
-        if (value <= rating) {
-          star.classList.add('active');
-        } else {
-          star.classList.remove('active');
-        }
-      });
-    }
-    
-    // Enviar calificación y comentario
-    submitBtn.addEventListener('click', function() {
-      if (selectedRating > 0 && !hasVoted) {
-        const commentText = commentBox.value.trim();
-        
-        // Guardar comentario
-        const newComment = {
-          rating: selectedRating,
-          text: commentText,
-          timestamp: new Date().toISOString()
-        };
-        
-        comments.push(newComment);
-        localStorage.setItem('comments', JSON.stringify(comments));
-        
-        // Guardar voto y TIEMPO
-        voteStartTime = new Date().getTime();
-        localStorage.setItem('hasVoted', 'true');
-        localStorage.setItem('userRating', selectedRating);
-        localStorage.setItem('voteTime', voteStartTime.toString());
-        
-        // Actualizar estadísticas
-        totalRatings++;
-        sumRatings += selectedRating;
-        localStorage.setItem('totalRatings', totalRatings);
-        localStorage.setItem('sumRatings', sumRatings);
-        
-        // Mostrar resultado
-        ratingResult.style.display = 'block';
-        selectedRatingSpan.textContent = selectedRating;
-        
-        // Actualizar promedio y mostrar comentarios
-        const newAverage = (sumRatings / totalRatings).toFixed(1);
-        averageRatingElement.textContent = `Calificación: ${newAverage}/5 (${totalRatings} votos)`;
-        totalCommentsElement.textContent = `${comments.length} comentarios`;
-        
-        // Deshabilitar más votos
-        hasVoted = true;
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-check"></i> ¡Gracias por tu feedback!';
-        submitBtn.style.background = '#10b981';
-        
-        // Iniciar contador de tiempo
-        timeInterval = setInterval(checkCanChangeVote, 1000);
-        checkCanChangeVote();
-        
-        // Actualizar lista de comentarios
-        displayComments();
-        
-        // Mostrar mensaje de agradecimiento CON INFORMACIÓN DE TIEMPO
-        alert(`¡Gracias por calificarnos con ${selectedRating} estrellas!\n\nTienes 3 minutos para cambiar tu voto si lo deseas.`);
-        
-        // Limpiar campo de comentario
-        commentBox.value = '';
-        charCount.textContent = '0';
-        
-      } else if (hasVoted) {
-        alert('Ya has calificado nuestro servicio. ¡Gracias por tu feedback!');
-      } else {
-        alert('Por favor selecciona una calificación (1-5 estrellas) antes de enviar');
-      }
-    });
-    
-    // Reiniciar voto (CON LÍMITE DE 3 MINUTOS)
-    resetBtn.addEventListener('click', function() {
-      if (!canChangeVote) {
-        alert('El tiempo para cambiar tu voto ha expirado (3 minutos).');
-        return;
-      }
-      
-      if (!checkCanChangeVote()) {
-        alert('Ya no puedes cambiar tu voto. El tiempo de 3 minutos ha finalizado.');
-        return;
-      }
-      
-      if (confirm('¿Seguro que quieres cambiar tu calificación y comentario?\n\nTiempo restante: ' + resetBtn.textContent.split('(')[1].replace(')', ''))) {
-        // Limpiar datos anteriores
-        localStorage.removeItem('hasVoted');
-        localStorage.removeItem('userRating');
-        localStorage.removeItem('voteTime');
-        
-        // Detener contador
-        if (timeInterval) {
-          clearInterval(timeInterval);
-        }
-        
-        // Reiniciar variables
-        selectedRating = 0;
-        highlightStars(0);
-        ratingResult.style.display = 'none';
-        commentBox.value = '';
-        charCount.textContent = '0';
-        hasVoted = false;
-        voteStartTime = null;
-        canChangeVote = true;
-        
-        // Habilitar botón de envío
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Calificación y Comentario';
-        submitBtn.style.background = '#f59e0b';
-        
-        // Restaurar botón de cambio
-        resetBtn.disabled = false;
-        resetBtn.innerHTML = '<i class="fas fa-redo"></i> Cambiar Mi Voto';
-        resetBtn.style.background = '#6b7280';
-        resetBtn.style.cursor = 'pointer';
-        
-        alert('Ahora puedes calificar y comentar nuevamente. Recuerda que tienes 3 minutos para cambiar tu voto.');
-      }
-    });
-    
-    // 3. ANIMACIÓN PARA LAS TARJETAS
-    const cards = document.querySelectorAll('.card, .visitor-counter, .rating-section');
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-    
-    cards.forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(card);
-    });
-  });
-</script>
-
-</body>
-</html>
