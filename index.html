@@ -15,7 +15,7 @@
       line-height: 1.6;
     }
     
-    /* CAMBIO 2: PORTADA MEJORADA - SIN RECUADRO OSCURO Y MEJOR CONTRASTE */
+    /* PORTADA MEJORADA */
     header {
       background: 
         linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), 
@@ -30,8 +30,6 @@
       align-items: center;
       position: relative;
     }
-    
-    /* Eliminado: .header-overlay (recuadro oscuro) */
     
     h1 {
       margin: 0 0 20px;
@@ -59,8 +57,6 @@
       max-width: 800px;
     }
     
-    /* CAMBIO 1: ELIMINADO CONTACTO DE PORTADA - Solo título */
-    
     section {
       max-width: 1100px;
       margin: auto;
@@ -85,6 +81,105 @@
     
     .card:hover {
       transform: translateY(-5px);
+    }
+    
+    /* NUEVO: ESTILOS PARA LA LISTA DETALLADA DE SERVICIOS */
+    .services-container {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+    
+    .service-category {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 20px;
+      border-left: 4px solid #2563eb;
+    }
+    
+    .service-category h3 {
+      color: #1f2937;
+      margin-top: 0;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .service-category h3 i {
+      color: #2563eb;
+    }
+    
+    .service-subcategory {
+      margin-left: 20px;
+      margin-top: 15px;
+    }
+    
+    .service-subcategory h4 {
+      color: #374151;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .service-subcategory h4 i {
+      color: #059669;
+      font-size: 0.9rem;
+    }
+    
+    .service-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    
+    .service-list li {
+      margin-bottom: 12px;
+      padding-left: 25px;
+      position: relative;
+    }
+    
+    .service-list li:before {
+      content: "▸";
+      color: #059669;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+    
+    .system-details {
+      background: #f0f9ff;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 10px;
+      border-left: 3px solid #3b82f6;
+    }
+    
+    .system-details li {
+      margin-bottom: 8px;
+      color: #4b5563;
+    }
+    
+    .system-details li:before {
+      content: "•";
+      color: #3b82f6;
+    }
+    
+    .parts-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    
+    .part-item {
+      background: #fef3c7;
+      padding: 10px 15px;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: bold;
+      color: #92400e;
     }
     
     .gallery {
@@ -205,7 +300,7 @@
       margin-top: 25px;
     }
     
-    /* CAMBIO 3: CONTADOR DE VISITAS MOVIDO (estilos se mantienen) */
+    /* CONTADOR DE VISITAS */
     .visitor-counter {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
@@ -379,24 +474,6 @@
       padding: 20px;
     }
     
-    ul {
-      padding-left: 20px;
-    }
-    
-    li {
-      margin-bottom: 10px;
-      position: relative;
-      padding-left: 10px;
-    }
-    
-    li:before {
-      content: "✓";
-      color: #25D366;
-      font-weight: bold;
-      position: absolute;
-      left: -15px;
-    }
-    
     @media (max-width: 768px) {
       h1 {
         font-size: 2.5rem;
@@ -413,6 +490,14 @@
       
       .card {
         padding: 20px;
+      }
+      
+      .service-subcategory {
+        margin-left: 10px;
+      }
+      
+      .parts-list {
+        grid-template-columns: 1fr;
       }
       
       .gallery {
@@ -458,12 +543,10 @@
 
 <body>
 
-<!-- CAMBIO 1 y 2: PORTADA SIMPLIFICADA - Solo título sobre foto mejorada -->
 <header>
   <h1>FRENOS Y SUSPENSIONES MARIO</h1>
   <p class="tagline">Especialistas en Seguridad Vehicular</p>
   <p class="subtitle">Reparación y mantenimiento profesional de frenos y suspensión en Medellín</p>
-  <!-- ELIMINADO: Teléfono y botones de contacto de la portada -->
 </header>
 
 <section>
@@ -478,17 +561,91 @@
     </p>
   </div>
 
+  <!-- NUEVA SECCIÓN DE SERVICIOS DETALLADA -->
   <div class="card">
     <h2>Servicios Especializados</h2>
-    <ul>
-      <li>Mantenimiento preventivo y correctivo vehicular</li>
-      <li>Reparación y ajuste de sistemas de frenos</li>
-      <li>Cambio y revisión de pastillas y discos</li>
-      <li>Rectificación de discos y campanas</li>
-      <li>Mantenimiento y reparación de suspensión</li>
-      <li>Cambio de amortiguadores</li>
-      <li>Inspección de seguridad vehicular</li>
-    </ul>
+    
+    <div class="services-container">
+      
+      <!-- MANTENIMIENTO VEHICULAR -->
+      <div class="service-category">
+        <h3><i class="fas fa-tools"></i> Mantenimiento Preventivo y Correctivo Vehicular</h3>
+        <ul class="service-list">
+          <li>Para vehículos pesados (camiones, buses, tractomulas)</li>
+          <li>Para vehículos livianos (automóviles, camionetas, motos)</li>
+          <li>Diagnóstico completo de sistemas</li>
+          <li>Mantenimiento programado según fabricante</li>
+        </ul>
+      </div>
+      
+      <!-- SISTEMAS DE FRENO -->
+      <div class="service-category">
+        <h3><i class="fas fa-car-crash"></i> Reparación y Ajuste de Sistemas de Frenos</h3>
+        
+        <div class="service-subcategory">
+          <h4><i class="fas fa-microchip"></i> Sistemas de Asistencia y Accionamiento:</h4>
+          <div class="system-details">
+            <ul>
+              <li>
+                <strong>ABS (Sistema Antibloqueo):</strong> 
+                Evita que las ruedas se bloqueen en frenadas bruscas, permitiendo mantener el control de la dirección.
+              </li>
+              <li>
+                <strong>Sistema Hidráulico:</strong> 
+                Utiliza líquido de frenos para transmitir la presión del pedal a las ruedas, estándar en vehículos livianos.
+              </li>
+              <li>
+                <strong>Sistema Neumático/Aire:</strong> 
+                Común en vehículos pesados y camiones, usa aire comprimido para activar los frenos.
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <ul class="service-list">
+          <li>Cambio y revisión de pastillas y discos</li>
+          <li>Rectificación de discos y campanas</li>
+          <li>Purga y cambio de líquido de frenos</li>
+          <li>Revisión de bombas y cilindros</li>
+        </ul>
+      </div>
+      
+      <!-- SISTEMAS DE SUSPENSIÓN -->
+      <div class="service-category">
+        <h3><i class="fas fa-car-side"></i> Sistemas de Suspensión</h3>
+        <ul class="service-list">
+          <li>Mantenimiento y reparación de suspensión</li>
+          <li>Cambio de amortiguadores (todos los tipos)</li>
+          <li>Revisión de brazos de control y rótulas</li>
+          <li>Ajuste de altura y alineación básica</li>
+          <li>Inspección de seguridad vehicular completa</li>
+        </ul>
+      </div>
+      
+      <!-- VENTA DE REPUESTOS -->
+      <div class="service-category">
+        <h3><i class="fas fa-shopping-cart"></i> Venta de Repuestos Originales</h3>
+        <p style="color: #4b5563; margin-bottom: 15px;">
+          Contamos con repuestos de alta calidad para el mantenimiento óptimo de sistemas de freno:
+        </p>
+        
+        <div class="parts-list">
+          <div class="part-item">Frenos</div>
+          <div class="part-item">Bandas de Frenos</div>
+          <div class="part-item">Líquido de Freno</div>
+          <div class="part-item">Grasa Especializada</div>
+          <div class="part-item">Pastillas</div>
+          <div class="part-item">Discos</div>
+          <div class="part-item">Amortiguadores</div>
+          <div class="part-item">Kit de Suspensión</div>
+        </div>
+        
+        <p style="margin-top: 15px; font-style: italic; color: #6b7280;">
+          <i class="fas fa-check-circle"></i> Todos nuestros repuestos incluyen garantía
+        </p>
+      </div>
+      
+    </div>
   </div>
 
   <!-- SISTEMA DE CALIFICACIÓN -->
@@ -547,7 +704,7 @@
     </div>
   </div>
 
-  <!-- CAMBIO 3: CONTADOR DE VISITAS MOVIDO AQUÍ (después de calificaciones) -->
+  <!-- CONTADOR DE VISITAS -->
   <div class="visitor-counter">
     <h3><i class="fas fa-chart-line"></i> Visitas a Nuestra Página</h3>
     <div class="counter-number" id="visitCount">0</div>
@@ -569,7 +726,7 @@
     </p>
   </div>
 
-  <!-- CAMBIO 1: CONTACTO SOLO AL FINAL -->
+  <!-- CONTACTO AL FINAL -->
   <div class="card">
     <h2>Contacto y Ubicación</h2>
     
@@ -670,7 +827,7 @@
   </div>
 </footer>
 
-<!-- JAVASCRIPT PARA LAS FUNCIONALIDADES -->
+<!-- JAVASCRIPT (Mismo que antes) -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     // 1. CONTADOR DE VISITAS
