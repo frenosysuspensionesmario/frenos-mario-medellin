@@ -15,14 +15,15 @@
       line-height: 1.6;
     }
     
-    /* PORTADA CON TU IMAGEN taller1.jpg */
+    /* CAMBIO 2: PORTADA MEJORADA - SIN RECUADRO OSCURO Y MEJOR CONTRASTE */
     header {
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), 
-                  url('taller1.jpg') center/cover no-repeat;
+      background: 
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), 
+        url('taller1.jpg') center/cover no-repeat;
       color: #fff;
-      padding: 80px 20px;
+      padding: 100px 20px;
       text-align: center;
-      min-height: 70vh;
+      min-height: 80vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -30,36 +31,35 @@
       position: relative;
     }
     
-    .header-overlay {
-      background: rgba(31, 41, 55, 0.85);
-      padding: 40px;
-      border-radius: 15px;
-      max-width: 800px;
-      width: 90%;
-      backdrop-filter: blur(3px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
+    /* Eliminado: .header-overlay (recuadro oscuro) */
     
     h1 {
-      margin: 0 0 15px;
-      font-size: 2.8rem;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      margin: 0 0 20px;
+      font-size: 3.2rem;
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
       color: #ffffff;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
     
     .tagline {
-      font-size: 1.4rem;
-      margin-bottom: 25px;
-      color: #25D366;
-      font-weight: bold;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: #ffffff;
+      font-weight: 600;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     }
     
     .subtitle {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
+      font-size: 1.4rem;
+      margin-bottom: 40px;
       opacity: 0.95;
       line-height: 1.5;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+      max-width: 800px;
     }
+    
+    /* CAMBIO 1: ELIMINADO CONTACTO DE PORTADA - Solo título */
     
     section {
       max-width: 1100px;
@@ -205,7 +205,7 @@
       margin-top: 25px;
     }
     
-    /* NUEVO: CONTADOR DE VISITAS */
+    /* CAMBIO 3: CONTADOR DE VISITAS MOVIDO (estilos se mantienen) */
     .visitor-counter {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
@@ -223,7 +223,7 @@
       margin: 10px 0;
     }
     
-    /* NUEVO: SISTEMA DE CALIFICACIÓN MEJORADO */
+    /* SISTEMA DE CALIFICACIÓN */
     .rating-section {
       background: #fef3c7;
       padding: 30px;
@@ -263,7 +263,7 @@
       border-radius: 8px;
     }
     
-    /* NUEVO: CAMPO DE OBSERVACIONES */
+    /* CAMPO DE OBSERVACIONES */
     .comments-section {
       margin-top: 25px;
       text-align: left;
@@ -399,20 +399,16 @@
     
     @media (max-width: 768px) {
       h1 {
-        font-size: 2.2rem;
-      }
-      
-      .header-overlay {
-        padding: 25px 20px;
-        margin: 0 10px;
+        font-size: 2.5rem;
       }
       
       .tagline {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
       }
       
       .subtitle {
-        font-size: 1rem;
+        font-size: 1.1rem;
+        padding: 0 10px;
       }
       
       .card {
@@ -455,16 +451,6 @@
         justify-content: center;
       }
     }
-    
-    /* Estilo para destacar el número */
-    .highlight-phone {
-      background: #d1fae5;
-      padding: 5px 15px;
-      border-radius: 20px;
-      display: inline-block;
-      margin: 10px 0;
-      font-weight: bold;
-    }
   </style>
   <!-- Iconos de Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -472,37 +458,15 @@
 
 <body>
 
+<!-- CAMBIO 1 y 2: PORTADA SIMPLIFICADA - Solo título sobre foto mejorada -->
 <header>
-  <div class="header-overlay">
-    <h1>FRENOS Y SUSPENSIONES MARIO</h1>
-    <p class="tagline">Especialistas en seguridad vehicular</p>
-    <p class="subtitle">Reparación y mantenimiento profesional de frenos y suspensión en Medellín</p>
-    
-    <div class="highlight-phone">
-      <i class="fas fa-phone"></i> 
-      <span style="font-size: 1.3rem; margin-left: 10px;">📞 321 617 7943</span>
-    </div>
-    
-    <div class="buttons-container">
-      <a class="btn" href="https://wa.me/573216177943" target="_blank" rel="noopener">
-        <i class="fab fa-whatsapp"></i> WhatsApp: 321 617 7943
-      </a>
-      <a class="btn btn-call" href="tel:+573216177943">
-        <i class="fas fa-phone"></i> Llamar ahora
-      </a>
-    </div>
-  </div>
+  <h1>FRENOS Y SUSPENSIONES MARIO</h1>
+  <p class="tagline">Especialistas en Seguridad Vehicular</p>
+  <p class="subtitle">Reparación y mantenimiento profesional de frenos y suspensión en Medellín</p>
+  <!-- ELIMINADO: Teléfono y botones de contacto de la portada -->
 </header>
 
 <section>
-
-  <!-- CONTADOR DE VISITAS -->
-  <div class="visitor-counter">
-    <h3><i class="fas fa-chart-line"></i> Visitas a Nuestra Página</h3>
-    <div class="counter-number" id="visitCount">0</div>
-    <p>Clientes que nos han visitado</p>
-    <small><i class="fas fa-sync-alt"></i> Actualizado en tiempo real</small>
-  </div>
 
   <div class="card">
     <h2>¿Quiénes somos?</h2>
@@ -527,7 +491,7 @@
     </ul>
   </div>
 
-  <!-- SISTEMA DE CALIFICACIÓN CON OBSERVACIONES -->
+  <!-- SISTEMA DE CALIFICACIÓN -->
   <div class="rating-section">
     <h3><i class="fas fa-star"></i> Califica Nuestro Servicio</h3>
     <p>¿Cómo calificarías nuestro servicio? (1 a 5 estrellas)</p>
@@ -544,7 +508,7 @@
       <i class="fas fa-check-circle"></i> ¡Gracias por tu calificación de <span id="selectedRating">0</span> estrellas!
     </div>
     
-    <!-- NUEVO: CAMPO DE OBSERVACIONES -->
+    <!-- CAMPO DE OBSERVACIONES -->
     <div class="comments-section">
       <h4><i class="fas fa-comment-dots"></i> Observaciones o Comentarios (Opcional)</h4>
       <p style="color: #6b7280; margin-top: 5px; font-size: 0.95rem;">
@@ -583,6 +547,14 @@
     </div>
   </div>
 
+  <!-- CAMBIO 3: CONTADOR DE VISITAS MOVIDO AQUÍ (después de calificaciones) -->
+  <div class="visitor-counter">
+    <h3><i class="fas fa-chart-line"></i> Visitas a Nuestra Página</h3>
+    <div class="counter-number" id="visitCount">0</div>
+    <p>Clientes que nos han visitado</p>
+    <small><i class="fas fa-sync-alt"></i> Actualizado en tiempo real</small>
+  </div>
+
   <div class="card">
     <h2>Nuestro Taller</h2>
     <p>Contamos con herramientas especializadas y personal calificado para ofrecer el mejor servicio.</p>
@@ -597,6 +569,7 @@
     </p>
   </div>
 
+  <!-- CAMBIO 1: CONTACTO SOLO AL FINAL -->
   <div class="card">
     <h2>Contacto y Ubicación</h2>
     
