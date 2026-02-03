@@ -83,7 +83,7 @@
       transform: translateY(-5px);
     }
     
-    /* NUEVO: ESTILOS PARA LA LISTA DETALLADA DE SERVICIOS */
+    /* ESTILOS PARA LA LISTA DETALLADA DE SERVICIOS */
     .services-container {
       display: flex;
       flex-direction: column;
@@ -249,6 +249,7 @@
       background: #4b5563;
     }
     
+    /* MEJORADO: CONTACTO CON MÚLTIPLES TELÉFONOS */
     .contact-info {
       background: #f8fafc;
       padding: 25px;
@@ -284,12 +285,42 @@
       flex: 1;
     }
     
+    .phone-numbers {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    
+    .phone-number-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: #f0f9ff;
+      border-radius: 6px;
+      border-left: 3px solid #25D366;
+    }
+    
     .phone-number {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-weight: bold;
       color: #1f2937;
-      display: block;
-      margin-top: 5px;
+    }
+    
+    .phone-label {
+      font-size: 0.9rem;
+      color: #6b7280;
+      font-style: italic;
+    }
+    
+    .whatsapp-badge {
+      background: #25D366;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
     }
     
     .buttons-container {
@@ -504,6 +535,16 @@
         grid-template-columns: 1fr;
       }
       
+      .phone-numbers {
+        flex-direction: column;
+      }
+      
+      .phone-number-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+      
       .buttons-container {
         flex-direction: column;
         align-items: center;
@@ -515,7 +556,7 @@
       }
       
       .phone-number {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
       }
       
       .counter-number {
@@ -543,6 +584,7 @@
 
 <body>
 
+<!-- PORTADA SIMPLIFICADA -->
 <header>
   <h1>FRENOS Y SUSPENSIONES MARIO</h1>
   <p class="tagline">Especialistas en Seguridad Vehicular</p>
@@ -561,7 +603,7 @@
     </p>
   </div>
 
-  <!-- NUEVA SECCIÓN DE SERVICIOS DETALLADA -->
+  <!-- SECCIÓN DE SERVICIOS DETALLADA -->
   <div class="card">
     <h2>Servicios Especializados</h2>
     
@@ -648,7 +690,7 @@
     </div>
   </div>
 
-  <!-- SISTEMA DE CALIFICACIÓN -->
+  <!-- SISTEMA DE CALIFICACIÓN CON LÍMITE DE 3 MINUTOS -->
   <div class="rating-section">
     <h3><i class="fas fa-star"></i> Califica Nuestro Servicio</h3>
     <p>¿Cómo calificarías nuestro servicio? (1 a 5 estrellas)</p>
@@ -687,7 +729,6 @@
       <div class="no-comments" id="noComments">
         Sé el primero en dejar un comentario
       </div>
-      <!-- Los comentarios se agregarán aquí dinámicamente -->
     </div>
     
     <div class="rating-buttons">
@@ -700,7 +741,7 @@
     </div>
     
     <div style="margin-top: 20px; font-size: 0.9rem; color: #6b7280;">
-      <i class="fas fa-info-circle"></i> Tu feedback nos ayuda a mejorar continuamente
+      <i class="fas fa-info-circle"></i> Tienes 3 minutos para cambiar tu voto después de enviarlo
     </div>
   </div>
 
@@ -726,7 +767,7 @@
     </p>
   </div>
 
-  <!-- CONTACTO AL FINAL -->
+  <!-- CONTACTO AL FINAL CON MÚLTIPLES TELÉFONOS -->
   <div class="card">
     <h2>Contacto y Ubicación</h2>
     
@@ -751,14 +792,41 @@
         </div>
       </div>
       
+      <!-- NUEVO: SECCIÓN MEJORADA CON MÚLTIPLES TELÉFONOS -->
       <div class="contact-item">
         <div class="contact-icon" style="background: #25D366;">
           <i class="fab fa-whatsapp"></i>
         </div>
         <div class="contact-text">
-          <strong>WhatsApp y Teléfono:</strong><br>
-          <span class="phone-number">321 617 7943</span>
-          <small style="color: #6b7280; display: block;">(Código país: +57)</small>
+          <strong>Teléfonos y WhatsApp:</strong>
+          <div class="phone-numbers">
+            <div class="phone-number-item">
+              <div>
+                <span class="phone-number">321 617 7943</span>
+                <span class="phone-label">(Principal)</span>
+              </div>
+              <span class="whatsapp-badge">WhatsApp Activo</span>
+            </div>
+            
+            <div class="phone-number-item">
+              <div>
+                <span class="phone-number">312 253 5266</span>
+                <span class="phone-label">(Secundario)</span>
+              </div>
+              <span class="whatsapp-badge">WhatsApp Activo</span>
+            </div>
+            
+            <div class="phone-number-item">
+              <div>
+                <span class="phone-number">312 617 9707</span>
+                <span class="phone-label">(Alternativo)</span>
+              </div>
+              <span class="whatsapp-badge">WhatsApp Activo</span>
+            </div>
+          </div>
+          <small style="color: #6b7280; display: block; margin-top: 8px;">
+            <i class="fas fa-info-circle"></i> Código país: +57
+          </small>
         </div>
       </div>
       
@@ -797,12 +865,22 @@
     </iframe>
     
     <div class="buttons-container" style="margin-top: 30px;">
+      <!-- Botón WhatsApp Principal -->
       <a class="btn" href="https://wa.me/573216177943" target="_blank" rel="noopener">
-        <i class="fab fa-whatsapp"></i> Contactar por WhatsApp
+        <i class="fab fa-whatsapp"></i> WhatsApp: 321 617 7943
       </a>
+      
+      <!-- Botón WhatsApp Secundario -->
+      <a class="btn" href="https://wa.me/573122535266" target="_blank" rel="noopener" style="background: #0ea5e9;">
+        <i class="fab fa-whatsapp"></i> WhatsApp: 312 253 5266
+      </a>
+      
+      <!-- Botón Llamar (número principal) -->
       <a class="btn btn-call" href="tel:+573216177943">
         <i class="fas fa-phone"></i> Llamar por teléfono
       </a>
+      
+      <!-- Botón Email -->
       <a class="btn btn-email" href="mailto:frenosysuspensionesmario@gmail.com">
         <i class="fas fa-envelope"></i> Enviar correo
       </a>
@@ -815,8 +893,7 @@
   <p>© 2024 Frenos y Suspensiones Mario – Medellín, Colombia</p>
   <div style="margin-top: 15px;">
     <p style="font-size: 14px; opacity: 0.9;">
-      <i class="fas fa-phone"></i> Teléfono: 321 617 7943 | 
-      <i class="fab fa-whatsapp"></i> WhatsApp: 321 617 7943 |
+      <i class="fas fa-phone"></i> Teléfonos: 321 617 7943 | 312 253 5266 | 312 617 9707 |
       <i class="fas fa-map-marker-alt"></i> Calle 45 A # 63 A - 46, Medellín
     </p>
     <p style="font-size: 13px; margin-top: 10px; opacity: 0.7;">
@@ -827,7 +904,7 @@
   </div>
 </footer>
 
-<!-- JAVASCRIPT (Mismo que antes) -->
+<!-- JAVASCRIPT CON LÍMITE DE 3 MINUTOS -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     // 1. CONTADOR DE VISITAS
@@ -854,7 +931,7 @@
     };
     updateCounter();
     
-    // 2. SISTEMA DE CALIFICACIÓN CON COMENTARIOS
+    // 2. SISTEMA DE CALIFICACIÓN CON LÍMITE DE 3 MINUTOS
     const stars = document.querySelectorAll('.star');
     const submitBtn = document.getElementById('submitRating');
     const resetBtn = document.getElementById('resetRating');
@@ -872,6 +949,12 @@
     let totalRatings = parseInt(localStorage.getItem('totalRatings')) || 0;
     let sumRatings = parseInt(localStorage.getItem('sumRatings')) || 0;
     let comments = JSON.parse(localStorage.getItem('comments')) || [];
+    
+    // VARIABLES PARA CONTROL DE TIEMPO (3 MINUTOS)
+    let voteStartTime = null;
+    const changeTimeLimit = 3 * 60 * 1000; // 3 minutos en milisegundos
+    let canChangeVote = true;
+    let timeInterval = null;
     
     // Inicializar contador de caracteres
     charCount.textContent = commentBox.value.length;
@@ -896,7 +979,9 @@
           const commentDate = new Date(comment.timestamp).toLocaleDateString('es-ES', {
             day: '2-digit',
             month: '2-digit',
-            year: 'numeric'
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
           });
           
           const starsHTML = '★'.repeat(comment.rating) + '☆'.repeat(5 - comment.rating);
@@ -919,9 +1004,35 @@
     
     displayComments();
     
-    // Si ya votó, mostrar su voto
+    // Función para verificar si puede cambiar el voto
+    function checkCanChangeVote() {
+      if (voteStartTime) {
+        const currentTime = new Date().getTime();
+        const timePassed = currentTime - voteStartTime;
+        
+        if (timePassed > changeTimeLimit) {
+          canChangeVote = false;
+          resetBtn.disabled = true;
+          resetBtn.innerHTML = '<i class="fas fa-lock"></i> Tiempo expirado';
+          resetBtn.style.background = '#9ca3af';
+          resetBtn.style.cursor = 'not-allowed';
+          return false;
+        } else {
+          const timeLeft = Math.ceil((changeTimeLimit - timePassed) / 1000);
+          const minutes = Math.floor(timeLeft / 60);
+          const seconds = timeLeft % 60;
+          resetBtn.innerHTML = `<i class="fas fa-redo"></i> Cambiar Voto (${minutes}:${seconds.toString().padStart(2, '0')})`;
+          return true;
+        }
+      }
+      return true;
+    }
+    
+    // Si ya votó, configurar tiempo
     if (hasVoted) {
       const savedRating = localStorage.getItem('userRating');
+      const voteTime = localStorage.getItem('voteTime');
+      
       if (savedRating) {
         selectedRating = parseInt(savedRating);
         highlightStars(selectedRating);
@@ -930,6 +1041,22 @@
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-check"></i> ¡Ya has calificado!';
         submitBtn.style.background = '#10b981';
+        
+        // Configurar tiempo si existe
+        if (voteTime) {
+          voteStartTime = parseInt(voteTime);
+          
+          // Iniciar contador
+          timeInterval = setInterval(checkCanChangeVote, 1000);
+          checkCanChangeVote();
+        } else {
+          // Si no hay tiempo guardado, deshabilitar cambio
+          canChangeVote = false;
+          resetBtn.disabled = true;
+          resetBtn.innerHTML = '<i class="fas fa-lock"></i> No se puede cambiar';
+          resetBtn.style.background = '#9ca3af';
+          resetBtn.style.cursor = 'not-allowed';
+        }
       }
     }
     
@@ -983,9 +1110,11 @@
         comments.push(newComment);
         localStorage.setItem('comments', JSON.stringify(comments));
         
-        // Guardar voto
+        // Guardar voto y TIEMPO
+        voteStartTime = new Date().getTime();
         localStorage.setItem('hasVoted', 'true');
         localStorage.setItem('userRating', selectedRating);
+        localStorage.setItem('voteTime', voteStartTime.toString());
         
         // Actualizar estadísticas
         totalRatings++;
@@ -1008,11 +1137,15 @@
         submitBtn.innerHTML = '<i class="fas fa-check"></i> ¡Gracias por tu feedback!';
         submitBtn.style.background = '#10b981';
         
+        // Iniciar contador de tiempo
+        timeInterval = setInterval(checkCanChangeVote, 1000);
+        checkCanChangeVote();
+        
         // Actualizar lista de comentarios
         displayComments();
         
-        // Mostrar mensaje de agradecimiento
-        alert(`¡Gracias por calificarnos con ${selectedRating} estrellas y por tu comentario!`);
+        // Mostrar mensaje de agradecimiento CON INFORMACIÓN DE TIEMPO
+        alert(`¡Gracias por calificarnos con ${selectedRating} estrellas!\n\nTienes 3 minutos para cambiar tu voto si lo deseas.`);
         
         // Limpiar campo de comentario
         commentBox.value = '';
@@ -1025,21 +1158,51 @@
       }
     });
     
-    // Reiniciar voto (solo para pruebas/desarrollo)
+    // Reiniciar voto (CON LÍMITE DE 3 MINUTOS)
     resetBtn.addEventListener('click', function() {
-      if (confirm('¿Seguro que quieres cambiar tu calificación y comentario?')) {
+      if (!canChangeVote) {
+        alert('El tiempo para cambiar tu voto ha expirado (3 minutos).');
+        return;
+      }
+      
+      if (!checkCanChangeVote()) {
+        alert('Ya no puedes cambiar tu voto. El tiempo de 3 minutos ha finalizado.');
+        return;
+      }
+      
+      if (confirm('¿Seguro que quieres cambiar tu calificación y comentario?\n\nTiempo restante: ' + resetBtn.textContent.split('(')[1].replace(')', ''))) {
+        // Limpiar datos anteriores
         localStorage.removeItem('hasVoted');
         localStorage.removeItem('userRating');
+        localStorage.removeItem('voteTime');
+        
+        // Detener contador
+        if (timeInterval) {
+          clearInterval(timeInterval);
+        }
+        
+        // Reiniciar variables
         selectedRating = 0;
         highlightStars(0);
         ratingResult.style.display = 'none';
         commentBox.value = '';
         charCount.textContent = '0';
         hasVoted = false;
+        voteStartTime = null;
+        canChangeVote = true;
+        
+        // Habilitar botón de envío
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Calificación y Comentario';
         submitBtn.style.background = '#f59e0b';
-        alert('Ahora puedes calificar y comentar nuevamente');
+        
+        // Restaurar botón de cambio
+        resetBtn.disabled = false;
+        resetBtn.innerHTML = '<i class="fas fa-redo"></i> Cambiar Mi Voto';
+        resetBtn.style.background = '#6b7280';
+        resetBtn.style.cursor = 'pointer';
+        
+        alert('Ahora puedes calificar y comentar nuevamente. Recuerda que tienes 3 minutos para cambiar tu voto.');
       }
     });
     
