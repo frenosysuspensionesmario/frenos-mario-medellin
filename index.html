@@ -205,6 +205,180 @@
       margin-top: 25px;
     }
     
+    /* NUEVO: CONTADOR DE VISITAS */
+    .visitor-counter {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 30px auto;
+      max-width: 300px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .counter-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    
+    /* NUEVO: SISTEMA DE CALIFICACIÓN MEJORADO */
+    .rating-section {
+      background: #fef3c7;
+      padding: 30px;
+      border-radius: 10px;
+      margin: 30px 0;
+      text-align: center;
+      border: 2px solid #f59e0b;
+    }
+    
+    .stars {
+      font-size: 2.5rem;
+      margin: 20px 0;
+      cursor: pointer;
+    }
+    
+    .star {
+      color: #d1d5db;
+      margin: 0 8px;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    
+    .star:hover,
+    .star.active {
+      color: #f59e0b;
+      transform: scale(1.2);
+    }
+    
+    .rating-result {
+      margin-top: 20px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #1f2937;
+      display: none;
+      padding: 15px;
+      background: #d1fae5;
+      border-radius: 8px;
+    }
+    
+    /* NUEVO: CAMPO DE OBSERVACIONES */
+    .comments-section {
+      margin-top: 25px;
+      text-align: left;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    }
+    
+    .comments-section h4 {
+      margin-top: 0;
+      color: #1f2937;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .comment-box {
+      width: 100%;
+      height: 120px;
+      padding: 15px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+      font-size: 1rem;
+      resize: vertical;
+      margin-top: 10px;
+      transition: border-color 0.3s;
+    }
+    
+    .comment-box:focus {
+      outline: none;
+      border-color: #f59e0b;
+      box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+    }
+    
+    .comment-counter {
+      text-align: right;
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-top: 5px;
+    }
+    
+    .rating-buttons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    
+    .rating-btn {
+      background: #f59e0b;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .rating-btn:hover {
+      background: #d97706;
+      transform: translateY(-2px);
+    }
+    
+    .rating-btn:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .all-comments {
+      margin-top: 30px;
+      text-align: left;
+    }
+    
+    .comment-item {
+      background: #f9fafb;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      border-left: 4px solid #f59e0b;
+    }
+    
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+    
+    .comment-stars {
+      color: #f59e0b;
+      font-size: 1rem;
+    }
+    
+    .comment-text {
+      line-height: 1.5;
+      color: #1f2937;
+    }
+    
+    .no-comments {
+      text-align: center;
+      color: #9ca3af;
+      font-style: italic;
+      padding: 20px;
+    }
+    
     ul {
       padding-left: 20px;
     }
@@ -262,6 +436,24 @@
       .phone-number {
         font-size: 1.2rem;
       }
+      
+      .counter-number {
+        font-size: 2rem;
+      }
+      
+      .stars {
+        font-size: 2rem;
+      }
+      
+      .rating-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .rating-btn {
+        width: 100%;
+        justify-content: center;
+      }
     }
     
     /* Estilo para destacar el número */
@@ -304,6 +496,14 @@
 
 <section>
 
+  <!-- CONTADOR DE VISITAS -->
+  <div class="visitor-counter">
+    <h3><i class="fas fa-chart-line"></i> Visitas a Nuestra Página</h3>
+    <div class="counter-number" id="visitCount">0</div>
+    <p>Clientes que nos han visitado</p>
+    <small><i class="fas fa-sync-alt"></i> Actualizado en tiempo real</small>
+  </div>
+
   <div class="card">
     <h2>¿Quiénes somos?</h2>
     <p>
@@ -325,6 +525,62 @@
       <li>Cambio de amortiguadores</li>
       <li>Inspección de seguridad vehicular</li>
     </ul>
+  </div>
+
+  <!-- SISTEMA DE CALIFICACIÓN CON OBSERVACIONES -->
+  <div class="rating-section">
+    <h3><i class="fas fa-star"></i> Califica Nuestro Servicio</h3>
+    <p>¿Cómo calificarías nuestro servicio? (1 a 5 estrellas)</p>
+    
+    <div class="stars" id="stars">
+      <span class="star" data-value="1">★</span>
+      <span class="star" data-value="2">★</span>
+      <span class="star" data-value="3">★</span>
+      <span class="star" data-value="4">★</span>
+      <span class="star" data-value="5">★</span>
+    </div>
+    
+    <div class="rating-result" id="ratingResult">
+      <i class="fas fa-check-circle"></i> ¡Gracias por tu calificación de <span id="selectedRating">0</span> estrellas!
+    </div>
+    
+    <!-- NUEVO: CAMPO DE OBSERVACIONES -->
+    <div class="comments-section">
+      <h4><i class="fas fa-comment-dots"></i> Observaciones o Comentarios (Opcional)</h4>
+      <p style="color: #6b7280; margin-top: 5px; font-size: 0.95rem;">
+        Comparte tu experiencia, sugerencias o comentarios sobre nuestro servicio
+      </p>
+      <textarea 
+        class="comment-box" 
+        id="commentBox" 
+        placeholder="Ej: Excelente servicio, muy profesional. Los frenos quedaron perfectos..."
+        maxlength="500"></textarea>
+      <div class="comment-counter">
+        <span id="charCount">0</span>/500 caracteres
+      </div>
+    </div>
+    
+    <!-- ÁREA PARA VER COMENTARIOS ANTERIORES -->
+    <div class="all-comments" id="allComments">
+      <h4><i class="fas fa-comments"></i> Comentarios de Clientes</h4>
+      <div class="no-comments" id="noComments">
+        Sé el primero en dejar un comentario
+      </div>
+      <!-- Los comentarios se agregarán aquí dinámicamente -->
+    </div>
+    
+    <div class="rating-buttons">
+      <button class="rating-btn" id="submitRating">
+        <i class="fas fa-paper-plane"></i> Enviar Calificación y Comentario
+      </button>
+      <button class="rating-btn" id="resetRating" style="background: #6b7280;">
+        <i class="fas fa-redo"></i> Cambiar Mi Voto
+      </button>
+    </div>
+    
+    <div style="margin-top: 20px; font-size: 0.9rem; color: #6b7280;">
+      <i class="fas fa-info-circle"></i> Tu feedback nos ayuda a mejorar continuamente
+    </div>
   </div>
 
   <div class="card">
@@ -434,10 +690,253 @@
       <i class="fas fa-map-marker-alt"></i> Calle 45 A # 63 A - 46, Medellín
     </p>
     <p style="font-size: 13px; margin-top: 10px; opacity: 0.7;">
-      Especialistas en frenos y suspensión | Servicio profesional garantizado | Atención inmediata
+      <span id="totalVisits">0 visitas</span> | 
+      <span id="averageRating">Calificación: 0/5 (0 votos)</span> | 
+      <span id="totalComments">0 comentarios</span>
     </p>
   </div>
 </footer>
+
+<!-- JAVASCRIPT PARA LAS FUNCIONALIDADES -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 1. CONTADOR DE VISITAS
+    let visitCount = localStorage.getItem('visitCount');
+    if (!visitCount) {
+      visitCount = 0;
+    }
+    visitCount = parseInt(visitCount) + 1;
+    localStorage.setItem('visitCount', visitCount);
+    
+    const counterElement = document.getElementById('visitCount');
+    const totalVisitsElement = document.getElementById('totalVisits');
+    let currentCount = 0;
+    const increment = Math.ceil(visitCount / 50);
+    
+    const updateCounter = () => {
+      if (currentCount < visitCount) {
+        currentCount += increment;
+        if (currentCount > visitCount) currentCount = visitCount;
+        counterElement.textContent = currentCount.toLocaleString();
+        totalVisitsElement.textContent = currentCount.toLocaleString() + ' visitas';
+        setTimeout(updateCounter, 30);
+      }
+    };
+    updateCounter();
+    
+    // 2. SISTEMA DE CALIFICACIÓN CON COMENTARIOS
+    const stars = document.querySelectorAll('.star');
+    const submitBtn = document.getElementById('submitRating');
+    const resetBtn = document.getElementById('resetRating');
+    const ratingResult = document.getElementById('ratingResult');
+    const selectedRatingSpan = document.getElementById('selectedRating');
+    const averageRatingElement = document.getElementById('averageRating');
+    const commentBox = document.getElementById('commentBox');
+    const charCount = document.getElementById('charCount');
+    const allComments = document.getElementById('allComments');
+    const noComments = document.getElementById('noComments');
+    const totalCommentsElement = document.getElementById('totalComments');
+    
+    let selectedRating = 0;
+    let hasVoted = localStorage.getItem('hasVoted') === 'true';
+    let totalRatings = parseInt(localStorage.getItem('totalRatings')) || 0;
+    let sumRatings = parseInt(localStorage.getItem('sumRatings')) || 0;
+    let comments = JSON.parse(localStorage.getItem('comments')) || [];
+    
+    // Inicializar contador de caracteres
+    charCount.textContent = commentBox.value.length;
+    
+    // Actualizar contador de caracteres
+    commentBox.addEventListener('input', function() {
+      charCount.textContent = this.value.length;
+    });
+    
+    // Calcular promedio inicial y mostrar comentarios
+    const averageRating = totalRatings > 0 ? (sumRatings / totalRatings).toFixed(1) : 0;
+    averageRatingElement.textContent = `Calificación: ${averageRating}/5 (${totalRatings} votos)`;
+    totalCommentsElement.textContent = `${comments.length} comentarios`;
+    
+    // Mostrar comentarios existentes
+    function displayComments() {
+      if (comments.length > 0) {
+        noComments.style.display = 'none';
+        allComments.innerHTML = '<h4><i class="fas fa-comments"></i> Comentarios de Clientes</h4>';
+        
+        comments.forEach((comment, index) => {
+          const commentDate = new Date(comment.timestamp).toLocaleDateString('es-ES', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          });
+          
+          const starsHTML = '★'.repeat(comment.rating) + '☆'.repeat(5 - comment.rating);
+          
+          const commentElement = document.createElement('div');
+          commentElement.className = 'comment-item';
+          commentElement.innerHTML = `
+            <div class="comment-header">
+              <span>Cliente ${index + 1} - ${commentDate}</span>
+              <div class="comment-stars">${starsHTML}</div>
+            </div>
+            <div class="comment-text">${comment.text || 'Sin comentario adicional'}</div>
+          `;
+          allComments.appendChild(commentElement);
+        });
+      } else {
+        noComments.style.display = 'block';
+      }
+    }
+    
+    displayComments();
+    
+    // Si ya votó, mostrar su voto
+    if (hasVoted) {
+      const savedRating = localStorage.getItem('userRating');
+      if (savedRating) {
+        selectedRating = parseInt(savedRating);
+        highlightStars(selectedRating);
+        ratingResult.style.display = 'block';
+        selectedRatingSpan.textContent = selectedRating;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> ¡Ya has calificado!';
+        submitBtn.style.background = '#10b981';
+      }
+    }
+    
+    // Eventos para las estrellas
+    stars.forEach(star => {
+      star.addEventListener('click', function() {
+        if (!hasVoted) {
+          selectedRating = parseInt(this.getAttribute('data-value'));
+          highlightStars(selectedRating);
+        }
+      });
+      
+      star.addEventListener('mouseover', function() {
+        if (!hasVoted) {
+          const value = parseInt(this.getAttribute('data-value'));
+          highlightStars(value, true);
+        }
+      });
+      
+      star.addEventListener('mouseout', function() {
+        if (!hasVoted) {
+          highlightStars(selectedRating);
+        }
+      });
+    });
+    
+    // Función para resaltar estrellas
+    function highlightStars(rating, isHover = false) {
+      stars.forEach(star => {
+        const value = parseInt(star.getAttribute('data-value'));
+        if (value <= rating) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+    
+    // Enviar calificación y comentario
+    submitBtn.addEventListener('click', function() {
+      if (selectedRating > 0 && !hasVoted) {
+        const commentText = commentBox.value.trim();
+        
+        // Guardar comentario
+        const newComment = {
+          rating: selectedRating,
+          text: commentText,
+          timestamp: new Date().toISOString()
+        };
+        
+        comments.push(newComment);
+        localStorage.setItem('comments', JSON.stringify(comments));
+        
+        // Guardar voto
+        localStorage.setItem('hasVoted', 'true');
+        localStorage.setItem('userRating', selectedRating);
+        
+        // Actualizar estadísticas
+        totalRatings++;
+        sumRatings += selectedRating;
+        localStorage.setItem('totalRatings', totalRatings);
+        localStorage.setItem('sumRatings', sumRatings);
+        
+        // Mostrar resultado
+        ratingResult.style.display = 'block';
+        selectedRatingSpan.textContent = selectedRating;
+        
+        // Actualizar promedio y mostrar comentarios
+        const newAverage = (sumRatings / totalRatings).toFixed(1);
+        averageRatingElement.textContent = `Calificación: ${newAverage}/5 (${totalRatings} votos)`;
+        totalCommentsElement.textContent = `${comments.length} comentarios`;
+        
+        // Deshabilitar más votos
+        hasVoted = true;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> ¡Gracias por tu feedback!';
+        submitBtn.style.background = '#10b981';
+        
+        // Actualizar lista de comentarios
+        displayComments();
+        
+        // Mostrar mensaje de agradecimiento
+        alert(`¡Gracias por calificarnos con ${selectedRating} estrellas y por tu comentario!`);
+        
+        // Limpiar campo de comentario
+        commentBox.value = '';
+        charCount.textContent = '0';
+        
+      } else if (hasVoted) {
+        alert('Ya has calificado nuestro servicio. ¡Gracias por tu feedback!');
+      } else {
+        alert('Por favor selecciona una calificación (1-5 estrellas) antes de enviar');
+      }
+    });
+    
+    // Reiniciar voto (solo para pruebas/desarrollo)
+    resetBtn.addEventListener('click', function() {
+      if (confirm('¿Seguro que quieres cambiar tu calificación y comentario?')) {
+        localStorage.removeItem('hasVoted');
+        localStorage.removeItem('userRating');
+        selectedRating = 0;
+        highlightStars(0);
+        ratingResult.style.display = 'none';
+        commentBox.value = '';
+        charCount.textContent = '0';
+        hasVoted = false;
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Calificación y Comentario';
+        submitBtn.style.background = '#f59e0b';
+        alert('Ahora puedes calificar y comentar nuevamente');
+      }
+    });
+    
+    // 3. ANIMACIÓN PARA LAS TARJETAS
+    const cards = document.querySelectorAll('.card, .visitor-counter, .rating-section');
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    cards.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(card);
+    });
+  });
+</script>
 
 </body>
 </html>
