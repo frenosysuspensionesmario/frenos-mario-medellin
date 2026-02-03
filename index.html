@@ -564,6 +564,45 @@
       padding: 20px;
     }
     
+    /* Estadísticas de calificaciones */
+    .rating-stats {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin: 20px 0;
+      padding: 15px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .stat-item {
+      text-align: center;
+      padding: 10px;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #f59e0b;
+    }
+    
+    .stat-label {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+    
+    /* Mensaje informativo */
+    .info-message {
+      background: #dbeafe;
+      border-left: 4px solid #3b82f6;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+      color: #1e40af;
+    }
+    
     @media (max-width: 768px) {
       h1 {
         font-size: 2.5rem;
@@ -640,6 +679,11 @@
       .rating-btn {
         width: 100%;
         justify-content: center;
+      }
+      
+      .rating-stats {
+        flex-direction: column;
+        gap: 15px;
       }
     }
   </style>
@@ -755,7 +799,7 @@
     </div>
   </div>
 
-  <!-- SISTEMA DE CALIFICACIÓN CON LÍMITE DE 3 MINUTOS -->
+  <!-- SISTEMA DE CALIFICACIÓN MEJORADO -->
   <div class="rating-section">
     <h3><i class="fas fa-star"></i> Califica Nuestro Servicio</h3>
     <p>¿Cómo calificarías nuestro servicio? (1 a 5 estrellas)</p>
@@ -770,6 +814,22 @@
     
     <div class="rating-result" id="ratingResult">
       <i class="fas fa-check-circle"></i> ¡Gracias por tu calificación de <span id="selectedRating">0</span> estrellas!
+    </div>
+    
+    <!-- ESTADÍSTICAS DE CALIFICACIONES -->
+    <div class="rating-stats" id="ratingStats">
+      <div class="stat-item">
+        <div class="stat-value" id="totalRatings">0</div>
+        <div class="stat-label">Total Calificaciones</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="averageRating">0.0</div>
+        <div class="stat-label">Promedio</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="lastRating">0</div>
+        <div class="stat-label">Última Calificación</div>
+      </div>
     </div>
     
     <!-- CAMPO DE OBSERVACIONES -->
@@ -788,6 +848,13 @@
       </div>
     </div>
     
+    <!-- INFORMACIÓN IMPORTANTE -->
+    <div class="info-message">
+      <i class="fas fa-info-circle"></i> 
+      <strong>Importante:</strong> Las calificaciones se guardan permanentemente y no pueden ser eliminadas por otros usuarios. 
+      Cada cliente puede ver todas las calificaciones anteriores pero solo puede enviar una nueva calificación.
+    </div>
+    
     <!-- ÁREA PARA VER COMENTARIOS ANTERIORES -->
     <div class="all-comments" id="allComments">
       <h4><i class="fas fa-comments"></i> Comentarios de Clientes</h4>
@@ -800,13 +867,10 @@
       <button class="rating-btn" id="submitRating">
         <i class="fas fa-paper-plane"></i> Enviar Calificación y Comentario
       </button>
-      <button class="rating-btn" id="resetRating" style="background: #6b7280;">
-        <i class="fas fa-redo"></i> Cambiar Mi Voto
-      </button>
     </div>
     
     <div style="margin-top: 20px; font-size: 0.9rem; color: #6b7280;">
-      <i class="fas fa-info-circle"></i> Tienes 3 minutos para cambiar tu voto después de enviarlo
+      <i class="fas fa-shield-alt"></i> Las calificaciones son permanentes y visibles para todos los visitantes
     </div>
   </div>
 
@@ -999,53 +1063,44 @@
   <p><small>Servicio profesional de frenos y suspensión para todo tipo de vehículos</small></p>
 </footer>
 
-<!-- SCRIPT CORREGIDO - AGREGAR JUSTO AQUÍ -->
+<!-- SCRIPT COMPLETAMENTE CORREGIDO Y SEGURO -->
 <script>
-  // ========== CONTADOR DE VISITAS MEJORADO ==========
+  // ========== CONTADOR DE VISITAS ==========
   function updateVisitorCounter() {
-    // Obtener el contador actual del localStorage
     let count = localStorage.getItem('pageVisits');
     
-    // Si no existe, inicializarlo en 0
     if (count === null) {
       count = 0;
     } else {
       count = parseInt(count);
     }
     
-    // Incrementar el contador (esto cuenta cada recarga)
     count = count + 1;
     
-    // Guardar el nuevo valor
     localStorage.setItem('pageVisits', count);
-    
-    // Mostrar el contador con formato
     document.getElementById('visitCount').textContent = count.toLocaleString('es-CO');
     
-    console.log('Contador de visitas actualizado:', count);
+    console.log('Contador de visitas:', count);
   }
   
-  // ========== SISTEMA DE CALIFICACIÓN ==========
+  // ========== SISTEMA DE CALIFICACIONES SEGURO ==========
   let selectedStars = 0;
-  let ratingSubmitted = false;
-  let resetTimeout = null;
-  const COMMENT_LIMIT = 500;
+  let allRatings = [];
+  
+  // Clave para localStorage
+  const RATINGS_KEY = 'frenosMarioRatings';
   
   // Inicializar estrellas
   document.querySelectorAll('.star').forEach(star => {
     star.addEventListener('mouseover', function() {
-      if (!ratingSubmitted) {
-        const value = parseInt(this.getAttribute('data-value'));
-        highlightStars(value);
-      }
+      const value = parseInt(this.getAttribute('data-value'));
+      highlightStars(value);
     });
     
     star.addEventListener('click', function() {
-      if (!ratingSubmitted) {
-        selectedStars = parseInt(this.getAttribute('data-value'));
-        highlightStars(selectedStars);
-        console.log('Estrellas seleccionadas:', selectedStars);
-      }
+      selectedStars = parseInt(this.getAttribute('data-value'));
+      highlightStars(selectedStars);
+      console.log('Estrellas seleccionadas:', selectedStars);
     });
   });
   
@@ -1068,7 +1123,6 @@
       const length = this.value.length;
       document.getElementById('charCount').textContent = length;
       
-      // Cambiar color si se acerca al límite
       const charCountElement = document.getElementById('charCount');
       if (length > 450) {
         charCountElement.style.color = '#dc2626';
@@ -1080,149 +1134,209 @@
     });
   }
   
-  // Enviar calificación
+  // Guardar nueva calificación
   document.getElementById('submitRating').addEventListener('click', function() {
     if (selectedStars === 0) {
       alert('Por favor, selecciona una calificación con las estrellas antes de enviar.');
       return;
     }
     
-    if (ratingSubmitted) {
-      alert('Ya has enviado tu calificación. Tienes 3 minutos para cambiarla.');
-      return;
-    }
-    
-    const comment = document.getElementById('commentBox').value;
+    const comment = document.getElementById('commentBox').value.trim();
     const timestamp = new Date().toLocaleString('es-CO');
+    const date = new Date().toISOString();
     
-    // Guardar en localStorage
-    const ratingData = {
+    // Crear objeto de calificación
+    const newRating = {
+      id: Date.now(), // ID único basado en timestamp
       stars: selectedStars,
       comment: comment,
       timestamp: timestamp,
-      expireTime: Date.now() + (3 * 60 * 1000) // 3 minutos para cambiar
+      date: date
     };
     
-    localStorage.setItem('userRating', JSON.stringify(ratingData));
+    // Cargar calificaciones existentes
+    loadRatingsFromStorage();
     
-    // Mostrar resultado
+    // Verificar si este usuario ya calificó (basado en sesión del navegador)
+    const userSessionId = getSessionId();
+    const userAlreadyRated = allRatings.some(rating => rating.sessionId === userSessionId);
+    
+    if (userAlreadyRated) {
+      alert('Ya has enviado una calificación desde este navegador. Cada usuario puede calificar solo una vez.');
+      return;
+    }
+    
+    // Agregar sessionId a la calificación
+    newRating.sessionId = userSessionId;
+    
+    // Agregar nueva calificación
+    allRatings.push(newRating);
+    
+    // Guardar en localStorage
+    saveRatingsToStorage();
+    
+    // Mostrar mensaje de éxito
     document.getElementById('selectedRating').textContent = selectedStars;
     document.getElementById('ratingResult').style.display = 'block';
     
     // Agregar comentario a la lista
-    addCommentToDisplay(selectedStars, comment, timestamp);
+    addCommentToDisplay(newRating);
     
-    ratingSubmitted = true;
-    document.getElementById('submitRating').disabled = true;
+    // Actualizar estadísticas
+    updateRatingStats();
     
-    // Permitir reset dentro de 3 minutos
-    resetTimeout = setTimeout(() => {
-      document.getElementById('resetRating').disabled = true;
-      document.getElementById('resetRating').style.opacity = '0.6';
-      document.getElementById('resetRating').innerHTML = '<i class="fas fa-clock"></i> Tiempo para cambiar expirado';
-    }, 3 * 60 * 1000);
-    
-    console.log('Calificación enviada:', selectedStars, 'estrellas');
-  });
-  
-  // Resetear calificación
-  document.getElementById('resetRating').addEventListener('click', function() {
-    if (!ratingSubmitted) return;
-    
-    const savedRating = localStorage.getItem('userRating');
-    if (savedRating) {
-      const ratingData = JSON.parse(savedRating);
-      
-      // Verificar si aún está dentro del tiempo de 3 minutos
-      if (Date.now() > ratingData.expireTime) {
-        alert('El tiempo para cambiar tu voto ha expirado (3 minutos).');
-        this.disabled = true;
-        this.style.opacity = '0.6';
-        this.innerHTML = '<i class="fas fa-clock"></i> Tiempo para cambiar expirado';
-        return;
-      }
-    }
-    
-    // Resetear todo
+    // Resetear formulario
     selectedStars = 0;
-    ratingSubmitted = false;
     document.querySelectorAll('.star').forEach(star => star.classList.remove('active'));
-    document.getElementById('ratingResult').style.display = 'none';
     document.getElementById('commentBox').value = '';
     document.getElementById('charCount').textContent = '0';
     document.getElementById('charCount').style.color = '#6b7280';
-    document.getElementById('submitRating').disabled = false;
     
-    clearTimeout(resetTimeout);
-    localStorage.removeItem('userRating');
+    // Deshabilitar botón de enviar para este usuario
+    this.disabled = true;
+    this.innerHTML = '<i class="fas fa-check-circle"></i> Ya calificaste';
+    this.style.background = '#10b981';
     
-    console.log('Calificación reseteada');
+    console.log('Nueva calificación guardada:', newRating);
+    
+    // Mostrar mensaje temporal
+    setTimeout(() => {
+      document.getElementById('ratingResult').style.display = 'none';
+    }, 5000);
   });
   
+  // Generar ID de sesión único para el usuario
+  function getSessionId() {
+    let sessionId = localStorage.getItem('userSessionId');
+    if (!sessionId) {
+      sessionId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('userSessionId', sessionId);
+    }
+    return sessionId;
+  }
+  
+  // Verificar si el usuario ya calificó
+  function checkUserAlreadyRated() {
+    const userSessionId = getSessionId();
+    loadRatingsFromStorage();
+    const userAlreadyRated = allRatings.some(rating => rating.sessionId === userSessionId);
+    
+    if (userAlreadyRated) {
+      document.getElementById('submitRating').disabled = true;
+      document.getElementById('submitRating').innerHTML = '<i class="fas fa-check-circle"></i> Ya calificaste';
+      document.getElementById('submitRating').style.background = '#10b981';
+    }
+  }
+  
+  // Cargar calificaciones desde localStorage
+  function loadRatingsFromStorage() {
+    const savedRatings = localStorage.getItem(RATINGS_KEY);
+    if (savedRatings) {
+      try {
+        allRatings = JSON.parse(savedRatings);
+        console.log('Calificaciones cargadas:', allRatings.length);
+      } catch (e) {
+        console.error('Error cargando calificaciones:', e);
+        allRatings = [];
+      }
+    } else {
+      allRatings = [];
+    }
+  }
+  
+  // Guardar calificaciones en localStorage
+  function saveRatingsToStorage() {
+    try {
+      localStorage.setItem(RATINGS_KEY, JSON.stringify(allRatings));
+      console.log('Calificaciones guardadas:', allRatings.length);
+    } catch (e) {
+      console.error('Error guardando calificaciones:', e);
+    }
+  }
+  
   // Agregar comentario a la pantalla
-  function addCommentToDisplay(stars, comment, timestamp) {
+  function addCommentToDisplay(rating) {
     // Ocultar mensaje de "no hay comentarios"
-    document.getElementById('noComments').style.display = 'none';
+    const noComments = document.getElementById('noComments');
+    if (noComments) {
+      noComments.style.display = 'none';
+    }
     
     const allComments = document.getElementById('allComments');
     
     // Crear elemento de comentario
     const commentDiv = document.createElement('div');
     commentDiv.className = 'comment-item';
+    commentDiv.id = `comment-${rating.id}`;
     
-    const starsText = '★'.repeat(stars);
+    const starsText = '★'.repeat(rating.stars);
+    const emptyStars = '☆'.repeat(5 - rating.stars);
     
     commentDiv.innerHTML = `
       <div class="comment-header">
-        <div><i class="fas fa-user-circle"></i> Cliente</div>
-        <div>${timestamp}</div>
+        <div><i class="fas fa-user-circle"></i> Cliente satisfecho</div>
+        <div>${rating.timestamp}</div>
       </div>
-      <div class="comment-stars">${starsText}</div>
-      <div class="comment-text">${comment || '<em>Sin comentario adicional</em>'}</div>
+      <div class="comment-stars">${starsText}${emptyStars} (${rating.stars}/5)</div>
+      <div class="comment-text">${rating.comment || '<em>Sin comentario adicional</em>'}</div>
     `;
     
-    // Agregar al inicio de la lista
-    const noComments = document.getElementById('noComments');
-    if (noComments) {
-      noComments.style.display = 'none';
+    // Agregar al inicio de la lista (más reciente primero)
+    if (allComments.children.length > 1) {
+      allComments.insertBefore(commentDiv, allComments.children[1]);
+    } else {
+      allComments.appendChild(commentDiv);
     }
-    allComments.appendChild(commentDiv);
   }
   
-  // Cargar comentarios previos al cargar la página
-  function loadPreviousComments() {
-    const savedRating = localStorage.getItem('userRating');
-    if (savedRating) {
-      try {
-        const ratingData = JSON.parse(savedRating);
-        
-        // Verificar si el rating aún es válido (menos de 24 horas)
-        const hoursSince = (Date.now() - new Date(ratingData.timestamp).getTime()) / (1000 * 60 * 60);
-        if (hoursSince < 24) {
-          selectedStars = ratingData.stars;
-          ratingSubmitted = true;
-          highlightStars(selectedStars);
-          document.getElementById('selectedRating').textContent = selectedStars;
-          document.getElementById('ratingResult').style.display = 'block';
-          document.getElementById('submitRating').disabled = true;
-          
-          // Agregar a la pantalla
-          addCommentToDisplay(ratingData.stars, ratingData.comment, ratingData.timestamp);
-          
-          // Verificar si aún puede cambiar
-          if (Date.now() > ratingData.expireTime) {
-            document.getElementById('resetRating').disabled = true;
-            document.getElementById('resetRating').style.opacity = '0.6';
-            document.getElementById('resetRating').innerHTML = '<i class="fas fa-clock"></i> Tiempo para cambiar expirado';
-          }
-        } else {
-          // Eliminar si tiene más de 24 horas
-          localStorage.removeItem('userRating');
-        }
-      } catch (e) {
-        console.error('Error cargando calificación guardada:', e);
-      }
+  // Cargar todos los comentarios
+  function loadAllComments() {
+    const allComments = document.getElementById('allComments');
+    const noComments = document.getElementById('noComments');
+    
+    // Limpiar comentarios existentes (excepto el título y el mensaje de no hay comentarios)
+    while (allComments.children.length > 2) {
+      allComments.removeChild(allComments.lastChild);
     }
+    
+    // Mostrar mensaje si no hay calificaciones
+    if (allRatings.length === 0) {
+      if (noComments) noComments.style.display = 'block';
+      return;
+    }
+    
+    // Ocultar mensaje de no hay comentarios
+    if (noComments) noComments.style.display = 'none';
+    
+    // Ordenar por fecha (más reciente primero)
+    const sortedRatings = [...allRatings].sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    // Mostrar todas las calificaciones
+    sortedRatings.forEach(rating => {
+      addCommentToDisplay(rating);
+    });
+  }
+  
+  // Actualizar estadísticas
+  function updateRatingStats() {
+    if (allRatings.length === 0) {
+      document.getElementById('totalRatings').textContent = '0';
+      document.getElementById('averageRating').textContent = '0.0';
+      document.getElementById('lastRating').textContent = '0';
+      return;
+    }
+    
+    // Calcular promedio
+    const totalStars = allRatings.reduce((sum, rating) => sum + rating.stars, 0);
+    const average = totalStars / allRatings.length;
+    
+    // Obtener última calificación
+    const lastRating = [...allRatings].sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+    
+    // Actualizar estadísticas
+    document.getElementById('totalRatings').textContent = allRatings.length;
+    document.getElementById('averageRating').textContent = average.toFixed(1);
+    document.getElementById('lastRating').textContent = lastRating.stars;
   }
   
   // ========== INICIALIZACIÓN ==========
@@ -1230,32 +1344,32 @@
     // Inicializar contador de visitas
     updateVisitorCounter();
     
-    // Cargar comentarios previos
-    loadPreviousComments();
-    
     // Inicializar contador de caracteres
     document.getElementById('charCount').textContent = '0';
     
+    // Cargar calificaciones existentes
+    loadRatingsFromStorage();
+    loadAllComments();
+    updateRatingStats();
+    
+    // Verificar si el usuario ya calificó
+    checkUserAlreadyRated();
+    
     // Efecto hover para estrellas
     document.querySelector('.stars').addEventListener('mouseleave', function() {
-      if (!ratingSubmitted) {
-        highlightStars(selectedStars);
-      }
+      highlightStars(selectedStars);
     });
     
     console.log('Página cargada correctamente');
+    console.log('Calificaciones totales:', allRatings.length);
   });
   
-  // ========== DEPURACIÓN ==========
   // Función para resetear el contador (útil para pruebas)
   function resetVisitorCounter() {
     localStorage.setItem('pageVisits', 0);
     document.getElementById('visitCount').textContent = '0';
-    console.log('Contador reseteado a 0');
+    console.log('Contador de visitas reseteado');
   }
-  
-  // Para probar: descomenta la siguiente línea y recarga para resetear el contador
-  // resetVisitorCounter();
 </script>
 
 </body>
